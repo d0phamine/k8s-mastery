@@ -12,16 +12,17 @@ def exifImage():
     print(request.get_json())
     a = request.get_json()
     print(type(a))
-    url="http://127.0.0.1:4000/" + a['body']['path']
+    print(a)
+    # url="http://127.0.0.1:3333/" + a['body']['file']['tmpPath']
 
-    req = requests.get(url, stream = True)
+    # req = requests.get(url, stream = True)
 
-    # img = request.files.get('file', '')
+    # # img = request.files.get('file', '')
 
-    with open ("image.png", "wb") as f:
-        for chunk in req:
-            f.write(chunk)
-    img = Image.open("image.png")
+    # with open ("image.png", "wb") as f:
+    #     for chunk in req:
+    #         f.write(chunk)
+    img = Image.open(a['body']['file']['tmpPath'])
     print("111")
     exifData = {
         ExifTags.TAGS[k]: v
