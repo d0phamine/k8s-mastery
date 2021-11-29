@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/textan", methods=['POST'])
 def analyse_sentiment():
-    sentence = request.get_json('body')['body']['body']
+    sentence = request.get_json()['body']['body']
     print(sentence)
     polarity = TextBlob(sentence).sentences[0].polarity
     print(polarity)

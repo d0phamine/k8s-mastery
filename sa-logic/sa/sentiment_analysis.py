@@ -22,13 +22,15 @@ def exifImage():
     # with open ("image.png", "wb") as f:
     #     for chunk in req:
     #         f.write(chunk)
-    img = Image.open(a['body']['file']['tmpPath'])
-    print("111")
-    exifData = {
-        ExifTags.TAGS[k]: v
-        for k, v in img._getexif().items()
-        if k in ExifTags.TAGS
-    }
+    img = Image.open(a['body'])
+    print(img)
+    try:
+        exifData = {
+            ExifTags.TAGS[k]: v
+            for k, v in img._getexif().items()
+            if k in ExifTags.TAGS
+        }
+    except: exifData = {'data' : 'нет данных'}
 
     print(exifData)
     return str(exifData)
