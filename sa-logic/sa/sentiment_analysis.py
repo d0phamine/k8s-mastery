@@ -1,10 +1,14 @@
 from textblob import TextBlob
-from flask import Flask, request, jsonify, json
+from flask import Flask, request, render_template
 from PIL import Image, ExifTags
 import requests
 
 app = Flask(__name__)
 
+@app.route("/q", methods=['GET'])
+def index():
+    print("123")
+    return render_template('index.html')
 
 @app.route("/exif", methods=['POST'])
 def exifImage():
