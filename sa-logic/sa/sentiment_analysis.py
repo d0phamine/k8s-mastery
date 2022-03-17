@@ -5,10 +5,10 @@ import requests
 
 app = Flask(__name__)
 
-@app.route("/q", methods=['GET'])
-def index():
-    print("123")
-    return render_template('index.html')
+# @app.route("/start", methods=["GET"])
+# def hello_world():
+#     return 'Moe Flask приложение в контейнере Docker.'
+
 
 @app.route("/exif", methods=['POST'])
 def exifImage():
@@ -26,7 +26,7 @@ def exifImage():
     # with open ("image.png", "wb") as f:
     #     for chunk in req:
     #         f.write(chunk)
-    req = requests.get("http://127.0.0.1:3333/uploads/"+a["fileName"], stream = True)
+    req = requests.get("http://host.docker.internal:3333/uploads/"+a["fileName"], stream = True)
     if req.status_code == 200:
         with open("image.png", "wb") as f:
             for chunk in req:
@@ -48,4 +48,4 @@ def exifImage():
 
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run(host='0.0.0.0', port=6000)
