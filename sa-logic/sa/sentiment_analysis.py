@@ -26,7 +26,7 @@ def exifImage():
     # with open ("image.png", "wb") as f:
     #     for chunk in req:
     #         f.write(chunk)
-    req = requests.get("http://host.docker.internal:3333/uploads/"+a["fileName"], stream = True)
+    req = requests.get("http://host.minikube.internal:3333/uploads/"+a["fileName"], stream = True)
     if req.status_code == 200:
         with open("image.png", "wb") as f:
             for chunk in req:

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exif2
+  labels:
+    app: exif2
+spec:
+  selector:
+     matchLabels:
+       app: exif2
+  replicas: 2
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
+      maxSurge: 1 
+  template:
+    metadata:
+      labels:
+        app: exif2
+    spec:
+      containers:
+        - image: d0phamin3/exif-service2
+          imagePullPolicy: Always
+          name: exif
+          ports:
+            - containerPort: 6000

@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sa-logic
+  name: exif
   labels:
-    app: sa-logic
+    app: exif
 spec:
   selector:
      matchLabels:
-       app: sa-logic
+       app: exif
   replicas: 2
   minReadySeconds: 15
   strategy:
@@ -18,11 +18,11 @@ spec:
   template:
     metadata:
       labels:
-        app: sa-logic
+        app: exif
     spec:
       containers:
-        - image: d0phamin3/exif
+        - image: d0phamin3/exif-service
           imagePullPolicy: Always
-          name: sa-logic
+          name: exif
           ports:
             - containerPort: 6000
